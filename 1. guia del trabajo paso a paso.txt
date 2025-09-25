@@ -1,0 +1,9 @@
+Servicio de Correo
+Programación orientada a objetos: cada cosa del sistema la convertí en una clase.
+El mensaje es una clase porque tiene su remitente, destinatario, asunto y contenido. El usuario es otra clase porque tiene su nombre y sus carpetas. El servidor es otra clase porque se encarga de registrar a los usuarios y entregar los mensajes. Y las carpetas son otra clase porque guardan los mensajes. Así cada parte tiene su función bien clara.
+
+Usé atributos privados para proteger los datos y que no cualquiera los pueda cambiar desde afuera, sólo con los métodos que yo definí.
+
+Después agregué las interfaces. Eso lo hice para que todas las clases importantes tengan un contrato mínimo. Por ejemplo, toda carpeta tiene que poder agregar mensajes y listarlos, todo usuario tiene que poder enviar y recibir, y todo servidor tiene que registrar y entregar mensajes. Si en el futuro quiero hacer un UsuarioPremium o una CarpetaSpam, al heredar de la interfaz ya sé que van a cumplir esas funciones obligatorias.
+
+Lo hice así para que el sistema sea más escalable, ordenado y fácil de mantener. Además, de esta forma muestro claramente los principios de la programación orientada a objetos: abstracción, encapsulamiento, herencia y polimorfismo.”
