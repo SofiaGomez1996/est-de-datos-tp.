@@ -109,5 +109,3 @@ class ServidorCorreo(IServidorCorreo):
             print("Error: Usuario destinatario no registrado en el servidor.")
 
     
-
-c
