@@ -1,0 +1,26 @@
+Clase Mensaje:
+    Atributos privados: remitente, destinatario, asunto, contenido
+    Métodos: __init__, getters, __str__
+
+Clase Carpeta:
+    Atributos privados: nombre, lista de mensajes
+    Métodos: agregar_mensaje(), listar_mensajes()
+
+Clase Usuario:
+    Atributos privados: nombre, correo, carpetas
+    Métodos:
+        recibir_mensaje(mensaje)
+        enviar_mensaje(servidor, destinatario, asunto, contenido)
+        listar_mensajes(carpeta)
+
+Clase ServidorCorreo:
+    Atributos privados: lista de usuarios
+    Métodos:
+        registrar_usuario(usuario)
+        enviar(mensaje, destinatario)
+
+Programa principal:
+    Crear servidor
+    Registrar usuarios
+    Usuario1 envía mensaje a Usuario2
+    Usuario2 lista mensajes en bandeja de entrada
