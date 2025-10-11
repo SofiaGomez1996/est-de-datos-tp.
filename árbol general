@@ -1,38 +1,27 @@
-Class Carpeta:
-    def _init_(self, nombre):
-        self.nombre = nombre
-        self.mensajes = []  # Lista de mensajes: {'asunto': ..., 'remitente': ...}
-        self.subcarpetas = []
+# Creamos la carpeta raíz
+bandeja = Carpeta("Bandeja de Entrada")
 
-    def agregar_subcarpeta(self, subcarpeta):
-        self.subcarpetas.append(subcarpeta)
-
-    def agregar_mensaje(self, asunto, remitente):
-        self.mensajes.append({'asunto': asunto, 'remitente': remitente})
-
-    def mostrar_estructura(self, nivel=0):
-        print('  ' * nivel + f" {self.nombre}")
-        for mensaje in self.mensajes:
-            print('  ' * (nivel + 1) + f" {mensaje['asunto']} - {mensaje['remitente']}")
-        for sub in self.subcarpetas:
-            sub.mostrar_estructura(nivel + 1)
-
-
-# Crear carpeta raíz
-inbox = Carpeta("Inbox")
-
-# Crear subcarpetas
+# Creamos subcarpetas
 trabajo = Carpeta("Trabajo")
 personal = Carpeta("Personal")
+proyectos = Carpeta("Proyectos")
 
-# Agregar subcarpetas a Inbox
-inbox.agregar_subcarpeta(trabajo)
-inbox.agregar_subcarpeta(personal)
+# Agregamos subcarpetas a la bandeja
+bandeja.agregar_subcarpeta(trabajo)
+bandeja.agregar_subcarpeta(personal)
 
-# Agregar mensajes
-inbox.agregar_mensaje("Reunión", "jefe@empresa.com")
-trabajo.agregar_mensaje("Informe", "analista@empresa.com")
-personal.agregar_mensaje("Cumpleaños", "amiga@gmail.com")
+# Agregamos subcarpetas dentro de "Trabajo"
+trabajo.agregar_subcarpeta(proyectos)
 
-# Mostrar estructura del árbol
-inbox.mostrar_estructura()
+# Agregamos mensajes a las carpetas
+bandeja.agregar_mensaje("Bienvenida", "Lucia")
+trabajo.agregar_mensaje("Informe mensual", "Ian")
+trabajo.agregar_mensaje("Reunión equipo", "Lucia")
+proyectos.agregar_mensaje("Proyecto A", "Ian")
+personal.agregar_mensaje("Cumpleaños", "Lucia")
+personal.agregar_mensaje("Vacaciones", "Ian")
+
+# Mostramos la estructura completa
+bandeja.mostrar_estructura()
+
+
