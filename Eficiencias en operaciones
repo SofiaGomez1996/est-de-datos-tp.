@@ -1,7 +1,7 @@
 En está entrega lo que hicimos fue implementar una estructura de árbol recursivo para gestionar carpetas y subcarpetas, donde cada carpeta puede contener mensajes. A continuación:
 
-Agregar subcarpetas: Agregar está es muy rápido, solo se agrega a la lista subcarpetas de la carpeta actual, sin tener que recorrer nada. Esto tiene una eficiencia constante, es decir, O1
-Agregar mensajes: El mensaje se guarda directamente en la lista de mensajes de la carpeta, sin hacer búsquedas. Por lo tanto también es O1
+Agregar subcarpetas: Agregar está es muy rápido, solo se agrega a la lista subcarpetas de la carpeta actual, sin tener que recorrer nada. Esto tiene una eficiencia constante, es decir, O(1)
+Agregar mensajes: El mensaje se guarda directamente en la lista de mensajes de la carpeta, sin hacer búsquedas. Por lo tanto también es O(1)
 Buscar mensaje, por asunto y remitente: Está operación es más lenta porque hay que recorrer todas las carpetas y dentro de cada una revisar todos los mensajes. Si hay muchas carpetas y muchos mensajes puede llegar a tardar bastante. La eficiencia en el peor caso es O(n*m), donde n es la cantidad de carpetas y m la cantidad de mensajes.
 Eliminar mensajes: Eliminar un mensaje implica buscarlo primero, por lo tanto tiene la misma eficiencia que la búsqueda O(n*m)
 Mover mensaje: Para mover un mensaje, primero hay que buscarlo y eliminarlo de la carpeta original, y luego agregarlo a la carpeta destino. Como buscar y eliminar es lo que más tarda, la eficiencia total también es O(n*m)
