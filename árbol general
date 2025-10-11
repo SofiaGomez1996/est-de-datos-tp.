@@ -1,0 +1,38 @@
+Class Carpeta:
+    def _init_(self, nombre):
+        self.nombre = nombre
+        self.mensajes = []  # Lista de mensajes: {'asunto': ..., 'remitente': ...}
+        self.subcarpetas = []
+
+    def agregar_subcarpeta(self, subcarpeta):
+        self.subcarpetas.append(subcarpeta)
+
+    def agregar_mensaje(self, asunto, remitente):
+        self.mensajes.append({'asunto': asunto, 'remitente': remitente})
+
+    def mostrar_estructura(self, nivel=0):
+        print('  ' * nivel + f" {self.nombre}")
+        for mensaje in self.mensajes:
+            print('  ' * (nivel + 1) + f" {mensaje['asunto']} - {mensaje['remitente']}")
+        for sub in self.subcarpetas:
+            sub.mostrar_estructura(nivel + 1)
+
+
+# Crear carpeta raíz
+inbox = Carpeta("Inbox")
+
+# Crear subcarpetas
+trabajo = Carpeta("Trabajo")
+personal = Carpeta("Personal")
+
+# Agregar subcarpetas a Inbox
+inbox.agregar_subcarpeta(trabajo)
+inbox.agregar_subcarpeta(personal)
+
+# Agregar mensajes
+inbox.agregar_mensaje("Reunión", "jefe@empresa.com")
+trabajo.agregar_mensaje("Informe", "analista@empresa.com")
+personal.agregar_mensaje("Cumpleaños", "amiga@gmail.com")
+
+# Mostrar estructura del árbol
+inbox.mostrar_estructura()
