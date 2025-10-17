@@ -1,0 +1,22 @@
+
+Analizamos la eficiencia de las operaciones que implementamos en nuestro árbol de carpetas y mensajes:
+
+agregar_mensaje(): O(1)
+Insertamos un mensaje al final de la lista, por lo que es una operación muy rápida y constante.
+
+eliminar_mensaje(): O(n)
+En el peor caso, tenemos que revisar todos los mensajes y recorrer todas las subcarpetas para encontrar el mensaje que queremos eliminar.
+
+mover_mensaje(): O(n)
+Primero buscamos el mensaje (O(n)) y luego lo insertamos en la carpeta destino (O(1)), así que la operación completa depende de la búsqueda.
+
+buscar_mensaje(): O(n)
+Puede que tengamos que recorrer todas las carpetas recursivamente para encontrar el mensaje.
+
+buscar_por_remitente(): O(n)
+Recorre todos los mensajes de todas las carpetas para devolver los que coinciden con el remitente.
+
+mostrar_estructura(): O(n)
+Recorre todas las carpetas y subcarpetas para imprimir la estructura completa del árbol.
+
+En general vimos que las operaciones simples, como agregar mensajes, son muy rápidas, mientras que las operaciones que requieren recorrer el árbol, como buscar, eliminar o mover mensajes, dependen de la cantidad de mensajes y carpetas, y por eso su eficiencia es O(n).
