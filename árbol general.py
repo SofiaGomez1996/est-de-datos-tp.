@@ -1,27 +1,34 @@
-# Creamos la carpeta raíz
+# árbol general
+class Carpeta:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.subcarpetas = []  # Lista de subcarpetas
+
+    def agregar_subcarpeta(self, subcarpeta):
+        """Agrega una subcarpeta dentro de la carpeta actual."""
+        if isinstance(subcarpeta, Carpeta):
+            self.subcarpetas.append(subcarpeta)
+
+    def mostrar_estructura(self, nivel=0):
+        """Muestra la estructura jerárquica de carpetas."""
+        print('  ' * nivel + "Carpeta: " + self.nombre)
+        for sub in self.subcarpetas:
+            sub.mostrar_estructura(nivel + 1)
+
+# Carpeta raíz
 bandeja = Carpeta("Bandeja de Entrada")
 
-# Creamos subcarpetas
+# Subcarpetas principales
 trabajo = Carpeta("Trabajo")
 personal = Carpeta("Personal")
+
+# Subcarpetas dentro de "Trabajo"
 proyectos = Carpeta("Proyectos")
 
-# Agregamos subcarpetas a la bandeja
+# Construcción del árbol
 bandeja.agregar_subcarpeta(trabajo)
 bandeja.agregar_subcarpeta(personal)
-
-# Agregamos subcarpetas dentro de "Trabajo"
 trabajo.agregar_subcarpeta(proyectos)
 
-# Agregamos mensajes a las carpetas
-bandeja.agregar_mensaje("Bienvenida", "Lucia")
-trabajo.agregar_mensaje("Informe mensual", "Ian")
-trabajo.agregar_mensaje("Reunión equipo", "Lucia")
-proyectos.agregar_mensaje("Proyecto A", "Ian")
-personal.agregar_mensaje("Cumpleaños", "Lucia")
-personal.agregar_mensaje("Vacaciones", "Ian")
-
-# Mostramos la estructura completa
+# Mostrar el árbol
 bandeja.mostrar_estructura()
-
-
