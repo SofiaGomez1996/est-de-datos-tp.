@@ -87,27 +87,7 @@ class Carpeta:
         for sub in self.subcarpetas:
             sub.mostrar_estructura(nivel + 1)
 
-    # ANÁLISIS DE EFICIENCIA 
-    # agregar_mensaje(): O(1)
-    # - Inserta un mensaje al final de la lista, operación constante.
-    #
-    # eliminar_mensaje(): O(n)
-    #  - En el peor caso debe recorrer todos los mensajes y subcarpetas.
-    #
-    # mover_mensaje(): O(n)
-    # - Realiza una búsqueda (O(n)) y una inserción (O(1)).
-    #
-    # buscar_mensaje(): O(n)
-    # - Puede tener que visitar todas las carpetas recursivamente.
-    #
-    # buscar_por_remitente(): O(n)
-    # - Recorre todos los mensajes del árbol de carpetas.
-    #
-    # mostrar_estructura(): O(n)
-    #- Recorre todas las carpetas y subcarpetas para imprimir.
-    #
-    # En general, las operaciones que implican recorrer recursivamente la estructura
-    # tienen una eficiencia O(n), donde n es la cantidad total de mensajes en el sistema.
+  
     
 
 
