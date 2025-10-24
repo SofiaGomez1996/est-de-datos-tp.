@@ -1,16 +1,14 @@
 # Ejemplo de mensajes
-mensajes = [
+mensajes =[
     {"remitente": "profesor@uni.edu", "asunto": "Tarea", "etiquetas": ["importante"]},
     {"remitente": "spam@promo.com", "asunto": "Oferta", "etiquetas": ["spam"]},
-    {"remitente": "amigo@mail.com", "asunto": "Reunión", "etiquetas": ["personal"]}
-]
+    {"remitente": "amigo@mail.com", "asunto": "Reunión", "etiquetas": ["personal"]}]
 
 # Reglas definidas por el usuario
 reglas = {
     "importante": [],
     "spam": [],
-    "personal": []
-}
+    "personal": []}
 
 # Filtro automático
 for mensaje in mensajes:
