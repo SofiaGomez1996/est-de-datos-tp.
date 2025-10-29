@@ -63,10 +63,15 @@ Después, al mostrar o procesar mensajes, el sistema siempre atiende primero los
 Esto lo implementamos usando una lista ordenada, donde los mensajes se insertan según su prioridad
 
 🔹 Organización general del código
-
-El sistema tiene las clases principales:
+ El sistema tiene las clases principales:
 Mensaje: guarda el contenido, remitente, asunto y prioridad.
 Carpeta: contiene los mensajes y subcarpetas.
 ServidorCorreo: maneja los filtros, las carpetas y la cola de prioridad.
 Los filtros se aplican automáticamente cuando llega un mensaje nuevo, y si es urgente, también se agrega a la cola.
+
+Con esta entrega aplicamos estructuras de datos más avanzadas:
+Listas para almacenar mensajes.
+Diccionarios para los filtros automáticos.
+Cola de prioridad para manejar urgencias.
+ El objetivo fue mejorar la organización y eficiencia del sistema de correo, haciendo que las operaciones de clasificación y prioridad se realicen de forma automática y ordenada.
 
