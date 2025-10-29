@@ -2,40 +2,68 @@
            CORREO EXPRESS
 PARTE 1:                           
 Para modelar un cliente de correo electrónico, se definen cuatro clases principales:
-MENSAJE:
+🔹MENSAJE:
  Esta clase representa un correo. Tiene los datos básicos de un mensaje: quién lo envía, a quién va, el asunto y el contenido.
-CARPETA:
+🔹CARPETA:
  Representa una carpeta de correos, como "Bandeja de entrada" o "Enviados". Guarda una lista de mensajes.
-USUARIO:
+🔹USUARIO:
  Es el que usa el sistema. Cada usuario tiene un nombre, una bandeja de entrada y una carpeta de enviados.
-SERVIDOR CORREO:
+🔹SERVIDOR CORREO:
  Es el que conecta a los usuarios. Se encarga de entregar los mensajes.
 
-Encapsular significa proteger los datos internos de cada clase para que no se puedan modificar directamente desde afuera. Para eso, se uso doble guión bajo__delante de cada atributo.
+🔹Encapsular significa proteger los datos internos de cada clase para que no se puedan modificar directamente desde afuera. Para eso, se uso doble guión bajo__delante de cada atributo.
 ej: self.__remitente
 Esto hace que esos atributos sean privados. Nadie desde afuera puede acceder a ello directamente.
 
-Para poder leer esos atributos privados sin romper la encapsulación, optamos por usar propiedades con el decorador @property
+🔹Para poder leer esos atributos privados sin romper la encapsulación, optamos por usar propiedades con el decorador @property
  ej: En la clase mensaje                                @property                                                   def remitente(self):                       
 @property                                                   def destinatario(self):                                           return self.__destinatario
 
  -Esto permite acceder al valor como si fuera un atributo, pero en realidad es un método que lo devuelve de forma segura.                                 
-La interfaz en este caso son los métodos públicos que permiten usar el sistema. Está definido en la clase Usuario , el cual interactúa con los mensajes.
+🔹La interfaz en este caso son los métodos públicos que permiten usar el sistema. Está definido en la clase Usuario , el cual interactúa con los mensajes.
 
-ENVIAR MENSAJE
+🔹ENVIAR MENSAJE
 Este método:
 • Crea un mensaje
 • Lo guarda en la carpeta de enviados
 • Le pide al servidor que lo entregue al destinatario
 
-RECIBIR MENSAJE 
+🔹RECIBIR MENSAJE 
 Este método:
 • Guarda el mensaje en la bandeja de entrada del usuario
 
-LISTAR MENSAJES 
+🔹LISTAR MENSAJES 
 Estos métodos:
-• Devuelven una lista de mensajes en formato legible      
+• Devuelven una lista de mensajes en formato legible     
 
+PARTE 2:
+🔹Estructuras de Datos y Recursividad
+Se implementó un sistema de gestión de carpetas y mensajes utilizando una estructura recursiva (árbol general). Cada carpeta puede contener mensajes y subcarpetas, permitiendo organizar la información de manera jerárquica y flexible.
+
+El sistema permite realizar operaciones esenciales como:
+ Agregar y eliminar mensajes en carpetas y subcarpetas.
+ Crear nuevas subcarpetas dentro de cualquier carpeta.
+ Buscar mensajes por asunto o remitente de manera recursiva.
+ Mover mensajes entre carpetas, manteniendo la consistencia del árbol.
+
+🔹 Estructura de datos
+ Carpeta: nodo del árbol que contiene:
+ Nombre de la carpeta.
+ Lista de mensajes asociados.
+Lista de subcarpetas, cada una con la misma estructura.
+🔹Árbol general: cada carpeta puede tener múltiples subcarpetas, generando una jerarquía recursiva. Esto permite que cualquier operación se aplique en toda la estructura de manera uniforme.
+
+🔹Operaciones implementadas
+ Agregar mensajes: se añaden al final de la lista de mensajes de la carpeta.
+ Eliminar mensajes: se busca y elimina un mensaje por asunto en la carpeta y todas sus subcarpetas.
+ Buscar mensajes: se realiza de manera recursiva, por asunto o remitente, recorriendo toda la estructura.
+ Agregar subcarpetas: permite crear nuevas ramas en el árbol de carpetas.
+ Mover mensajes: combina búsqueda, eliminación y agregado en otra carpeta destino.
+ 🔹Análisis de eficiencia
+ n representa la cantidad total de mensajes en la carpeta y todas sus subcarpetas.
+
+La recursividad permite recorrer automáticamente todas las subcarpetas sin necesidad de iteraciones manuales.
+ 
 PARTE 3:
 🔹Algoritmos y Funcionalidades Avanzadas
 En esta entrega agregamos nuevas funcionalidades al sistema de correo que había hecho antes. La idea fue hacerlo más completo y parecido a un correo real, pero aplicando estructuras de datos como listas, diccionarios y colas de prioridad.
