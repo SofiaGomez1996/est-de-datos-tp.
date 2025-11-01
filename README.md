@@ -103,3 +103,4 @@ Diccionarios para los filtros automáticos.
 Cola de prioridad para manejar urgencias.
  El objetivo fue mejorar la organización y eficiencia del sistema de correo, haciendo que las operaciones de clasificación y prioridad se realicen de forma automática y ordenada.
 
+🔹A su vez, fuimos modificando archivos tanto de la parte 1,2 como la parte 3, para que el main pueda tener una función correcta.
