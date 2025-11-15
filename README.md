@@ -104,3 +104,23 @@ Cola de prioridad para manejar urgencias.
  El objetivo fue mejorar la organización y eficiencia del sistema de correo, haciendo que las operaciones de clasificación y prioridad se realicen de forma automática y ordenada.
 
 🔹A su vez, fuimos modificando archivos tanto de la parte 1,2 como la parte 3, para que el main pueda tener una función correcta.
+
+PARTE 4:
+🔹Integración y presentación:
+En está última entrega lo que hicimos fue enforcarnos en integrar las funciones que desarrollamos en entregas anteriores (entrega 1, entrega 2, y entrega 3)
+Para ello, juntamos las clases y módulos del sistema
+Implementamos todas las fuciones en un archivo principal
+Y a su vez, implementamos una interfaz de usuario 
+🔹La idea principal, es que cualquier usuario pudiera acceder a las funciones principales del proyecto de forma clara y sencilla, esto a través de un menú interactivo con opciones como "Registrar o Gestionar Datos".
+Esto a su vez, nos lleva a pertmitir verificar que todas las partes del sistema funcionen de manera correcta al unirlas.
+🔹Luego, en la domuntación de código, agregamos comentarios, métodos y atributos.
+🔹Creamos un achivo README.md donde explicamos el paso a paso del proyecto, como se instala, como se ejecuta, expliamos como creamos cada entrega, la resolución que utilizamos y el mantenimiento del código que llevamos a cabo.
+🔹Organizamos el proyecto y lo fuimos subiendo subiendo al repositorio GitHub.
+-En está misma lo que hicimos fue crear diferentes archivos/carpetas de manera ordenadas.
+-Incuimos los diferentes códigos, con y sin funcionamiento, y a su vez los diferentes documentos requeridos.
+-Trabajamos en conjunto, siendo tres integrantes, dividiendonos diferentes etapas del dicho proyecto.
+- En cada entrega subimos al repositorio lo corresponiente a cada enttrega, en tiempo y forma.
+- Usamos el Git para cada entrega, dejando evidencias de los diferentes cambios que fuimos haciendo a lo largo del proyecto y de cada entrega, a su vez dejando evidencia de cada colaboración en conjunto como ajustes y haciendo funcionar el main.
+
+  En conclusión, seguimos trabajando para darle un cierre correspondiente y demostar el funcionamiento, a su vez preparandonos para la defensa para poder demostrar lo entendido, lo aprendido y nuestro rendimiento siendo muy capaz.
+
