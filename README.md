@@ -107,7 +107,7 @@ Cola de prioridad para manejar urgencias.
 
 PARTE 4:
 🔹Integración y presentación:
-En está última entrega lo que hicimos fue enforcarnos en integrar las funciones que desarrollamos en entregas anteriores (entrega 1, entrega 2, y entrega 3)
+En está última entrega lo que hicimos fue enfocarnos en integrar las funciones que desarrollamos en entregas anteriores (entrega 1, entrega 2, y entrega 3)
 Para ello, juntamos las clases y módulos del sistema
 Implementamos todas las fuciones en un archivo principal
 Y a su vez, implementamos una interfaz de usuario 
@@ -119,8 +119,8 @@ Esto a su vez, nos lleva a pertmitir verificar que todas las partes del sistema 
 -En está misma lo que hicimos fue crear diferentes archivos/carpetas de manera ordenadas.
 -Incuimos los diferentes códigos, con y sin funcionamiento, y a su vez los diferentes documentos requeridos.
 -Trabajamos en conjunto, siendo tres integrantes, dividiendonos diferentes etapas del dicho proyecto.
-- En cada entrega subimos al repositorio lo corresponiente a cada enttrega, en tiempo y forma.
+- En cada entrega subimos al repositorio lo corresponiente a cada entrega, en tiempo y forma.
 - Usamos el Git para cada entrega, dejando evidencias de los diferentes cambios que fuimos haciendo a lo largo del proyecto y de cada entrega, a su vez dejando evidencia de cada colaboración en conjunto como ajustes y haciendo funcionar el main.
 
-  En conclusión, seguimos trabajando para darle un cierre correspondiente y demostar el funcionamiento, a su vez preparandonos para la defensa para poder demostrar lo entendido, lo aprendido y nuestro rendimiento siendo muy capaz.
+  En conclusión, seguimos trabajando para darle un cierre correspondiente y demostrar el funcionamiento, a su vez preparandonos para la defensa para poder demostrar lo entendido, lo aprendido y nuestro rendimiento siendo muy capaz.
 
