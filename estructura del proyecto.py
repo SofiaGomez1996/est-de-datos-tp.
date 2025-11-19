@@ -46,7 +46,7 @@ aplicar filtros
 ver árbol
 usar BFS/DFS para servidores
 
-📁 src/interfaces/
+ src/interfaces/
 icarpeta.py
 Interfaz abstracta de Carpeta.
 
