@@ -72,7 +72,6 @@ class ServidorCorreo {
 ServidorCorreo ..|> IServidorCorreo
 
 RELACIONES PRINCIPALES:
-
 Usuario "1" --> "*" Carpeta : contiene >
 Usuario "1" --> "*" Mensaje : recibe >
 Carpeta "1" --> "*" Mensaje : almacena >
