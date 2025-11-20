@@ -1,99 +1,79 @@
 """
-CLIENTE DE CORREO ELECTRÓNICO COMPLETO
+CLIENTE DE CORREO ELECTRÓNICO
 Descripción: Implementación orientada a objetos de un cliente de correo electrónico,
 con carpetas recursivas, usuarios, servidor, filtros, cola de prioridades y grafo de servidores.
 """
 
 
-# INTERFACES
+# IMPORTS NECESARIOS
 
-
-from abc import ABC, abstractmethod
-from typing import List, Optional
+from typing import List, Optional, Dict
 import heapq
 from collections import deque
+from abc import ABC, abstractmethod
 
+
+# INTERFACES 
 class ICarpeta(ABC):
     @abstractmethod
-    def agregar_mensaje(self, mensaje):
-        pass
+    def agregar_mensaje(self, mensaje): pass
 
     @abstractmethod
-    def listar_mensajes(self):
-        pass
+    def listar_mensajes(self): pass
 
     @abstractmethod
-    def buscar_mensaje(self, asunto=None, remitente=None):
-        pass
+    def buscar_mensaje(self, asunto=None, remitente=None): pass
 
     @abstractmethod
-    def mover_mensaje(self, mensaje, carpeta_destino):
-        pass
+    def mover_mensaje(self, mensaje, carpeta_destino): pass
 
 
 class IUsuario(ABC):
     @abstractmethod
-    def enviar_mensaje(self, destinatario, asunto, cuerpo, servidor):
-        pass
+    def enviar_mensaje(self, destinatario, asunto, cuerpo, servidor): pass
 
     @abstractmethod
-    def recibir_mensaje(self, mensaje):
-        pass
+    def recibir_mensaje(self, mensaje): pass
 
     @abstractmethod
-    def listar_mensajes(self, nombre_carpeta=None):
-        pass
+    def listar_mensajes(self, nombre_carpeta=None): pass
 
 
 class IServidorCorreo(ABC):
     @abstractmethod
-    def registrar_usuario(self, usuario):
-        pass
+    def registrar_usuario(self, usuario): pass
 
     @abstractmethod
-    def entregar_mensaje(self, destinatario, mensaje):
-        pass
+    def entregar_mensaje(self, destinatario, mensaje): pass
 
     @abstractmethod
-    def enviar_mensaje(self, remitente, destinatario, asunto, cuerpo):
-        pass
+    def enviar_mensaje(self, remitente, destinatario, asunto, cuerpo): pass
 
 
-
-# CLASE MENSAJE
-
+# MENSAJE
 
 class Mensaje:
-    def __init__(self, asunto, cuerpo, remitente):
+    def __init__(self, asunto, cuerpo, remitente, prioridad=5):
         self.asunto = asunto
         self.cuerpo = cuerpo
         self.remitente = remitente
+        self.prioridad = prioridad
 
     def __str__(self):
         return "Asunto: " + self.asunto + " | Remitente: " + self.remitente
 
 
 
-# CARPETA (ÁRBOL GENERAL RECURSIVO)
-
+# CARPETA (ÁRBOL RECURSIVO)
 
 class Carpeta(ICarpeta):
     def __init__(self, nombre):
         self.nombre = nombre
-        self._mensajes = []
-        self._subcarpetas = []
-
-    @property
-    def mensajes(self):
-        return self._mensajes
-
-    @property
-    def subcarpetas(self):
-        return self._subcarpetas
+        self._mensajes: List[Mensaje] = []
+        self._subcarpetas: List['Carpeta'] = []
 
     def agregar_subcarpeta(self, carpeta):
-        if isinstance(carpeta, Carpeta):
-            self._subcarpetas.append(carpeta)
+        self._subcarpetas.append(carpeta)
 
     def agregar_mensaje(self, mensaje):
         self._mensajes.append(mensaje)
@@ -125,48 +105,42 @@ class Carpeta(ICarpeta):
             return True
         return False
 
-    def mostrar_estructura(self, nivel=0):
-        print("  " * nivel + "Carpeta: " + self.nombre)
-        for m in self._mensajes:
-            print("  " * (nivel + 1) + "Mensaje: " + str(m))
-        for sub in self._subcarpetas:
-            sub.mostrar_estructura(nivel + 1)
-
 
 
 # USUARIO
 
-
 class Usuario(IUsuario):
     def __init__(self, nombre):
         self.nombre = nombre
-        self._carpetas = {
+        self._carpetas: Dict[str, Carpeta] = {
             "Bandeja de entrada": Carpeta("Bandeja de entrada"),
             "Enviados": Carpeta("Enviados"),
             "Spam": Carpeta("Spam")
         }
+        self._urgentes = []  # Cola prioridad
 
     def recibir_mensaje(self, mensaje):
+        if mensaje.prioridad == 1:
+            heapq.heappush(self._urgentes, (mensaje.prioridad, mensaje))
         self._carpetas["Bandeja de entrada"].agregar_mensaje(mensaje)
 
     def enviar_mensaje(self, destinatario, asunto, cuerpo, servidor):
         servidor.enviar_mensaje(self.nombre, destinatario, asunto, cuerpo)
 
     def listar_mensajes(self, nombre_carpeta=None):
-        if nombre_carpeta and nombre_carpeta in self._carpetas:
+        if nombre_carpeta in self._carpetas:
             return self._carpetas[nombre_carpeta].listar_mensajes()
-        resultado = []
+        todos = []
         for carpeta in self._carpetas.values():
-            resultado.extend(carpeta.listar_mensajes())
-        return resultado
+            todos.extend(carpeta.listar_mensajes())
+        return todos
 
     def obtener_carpeta(self, nombre):
         return self._carpetas.get(nombre)
 
 
 
-# COLA DE PRIORIDADES (URGENTES)
-
+# COLA DE PRIORIDADES
 
 class ColaPrioridades:
     def __init__(self):
@@ -181,15 +155,13 @@ class ColaPrioridades:
         return None
 
 
-
-# SERVIDOR COMO GRAFO (BFS/DFS)
-
+# SERVIDOR + GRAFO (BFS - DFS)
 
 class ServidorCorreo(IServidorCorreo):
     def __init__(self, nombre):
         self.nombre = nombre
-        self._usuarios = {}
-        self.conexiones = []
+        self._usuarios: Dict[str, Usuario] = {}
+        self.conexiones: List['ServidorCorreo'] = []
         self.filtros = {}
 
     def registrar_usuario(self, usuario):
@@ -201,8 +173,8 @@ class ServidorCorreo(IServidorCorreo):
         if self not in servidor.conexiones:
             servidor.conexiones.append(self)
 
-    def agregar_filtro(self, palabra, carpeta):
-        self.filtros[palabra] = carpeta
+    def agregar_filtro(self, palabra, carpeta_destino):
+        self.filtros[palabra] = carpeta_destino
 
     def entregar_mensaje(self, destinatario, mensaje):
         if destinatario in self._usuarios:
@@ -247,8 +219,3 @@ class ServidorCorreo(IServidorCorreo):
                 if nueva:
                     return nueva
         return None
-
-    def simular_envio(self, destino, mensaje, metodo="BFS"):
-        if metodo == "BFS":
-            return self.encontrar_ruta_BFS(destino)
-        return self.encontrar_ruta_DFS(destino)
