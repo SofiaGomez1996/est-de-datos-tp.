@@ -1,4 +1,4 @@
-'          INTERFACES
+INTERFACES:
 interface ICarpeta {
     +agregar_mensaje(mensaje)
     +listar_mensajes()
@@ -15,8 +15,7 @@ interface IServidorCorreo {
     +entregar_mensaje(destinatario, mensaje)
     +enviar_mensaje(remitente, destinatario, asunto, cuerpo)}
 
-
-'          CLASE MENSAJE
+CLASE MENSAJE
 class Mensaje {
     -asunto : str
     -cuerpo : str
@@ -24,8 +23,7 @@ class Mensaje {
     -prioridad : int
     +__str__()}
 
-
-'          CLASE CARPETA
+CLASE CARPETA
 class Carpeta {
     -nombre : str
     -_mensajes : List<Mensaje>
@@ -39,8 +37,7 @@ class Carpeta {
 
 Carpeta ..|> ICarpeta
 
-
-'          USUARIO
+USUARIO:
 class Usuario {
     -nombre : str
     -_carpetas : Dict
@@ -52,15 +49,13 @@ class Usuario {
 
 Usuario ..|> IUsuario
 
-
-'     COLA DE PRIORIDADES
+COLA DE PRIORIDADES:
 class ColaPrioridades {
     -_cola : List
     +agregar(prioridad, mensaje)
     +obtener()}
 
-
-'      SERVIDOR CORREO
+SERVIDOR CORREO:
 class ServidorCorreo {
     -nombre : str
     -_usuarios : Dict<str, Usuario>
@@ -76,8 +71,7 @@ class ServidorCorreo {
 
 ServidorCorreo ..|> IServidorCorreo
 
-
-'      RELACIONES PRINCIPALES
+RELACIONES PRINCIPALES:
 
 Usuario "1" --> "*" Carpeta : contiene >
 Usuario "1" --> "*" Mensaje : recibe >
