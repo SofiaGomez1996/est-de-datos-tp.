@@ -4,7 +4,7 @@
 # 📧 Cliente de Correo – Proyecto en Python
 
 **Proyecto final de la cátedra Estructuras de Datos – UNaB (2025)**
-Implementación completa de un **cliente de correo electrónico** en Python, cumpliendo todos los requisitos del Trabajo Práctico: orientación a objetos, recursividad, estructuras de datos avanzadas, filtros, cola de prioridades y simulación de red mediante grafos.
+Implementación completa de un **cliente de correo electrónico** en Python: requisitos del Trabajo Práctico: orientación a objetos, recursividad, estructuras de datos avanzadas, filtros, cola de prioridades y simulación de red mediante grafos.
 
 ## Integrantes del grupo
 **Soto,Lucia**_
@@ -14,7 +14,6 @@ Implementación completa de un **cliente de correo electrónico** en Python, cum
 ##  Objetivo del Proyecto
 
 Modelar un sistema de correo electrónico que permita:
-
 * Crear usuarios.
 * Enviar y recibir mensajes.
 * Organizar mensajes en carpetas y subcarpetas (árbol general recursivo).
@@ -25,13 +24,11 @@ Modelar un sistema de correo electrónico que permita:
 
 El enfoque del proyecto está en el **uso correcto de estructuras de datos**, **encapsulamiento**, **recursividad**, **colecciones eficientes** y **algoritmos de recorrida de grafos**.
 
-
 ##  Funcionalidades Implementadas
 
 ## Sistema completo de usuarios
 
 Cada usuario posee:
-
 * Bandeja de entrada
 * Spam
 * Enviados
@@ -73,7 +70,7 @@ cliente_correo/
 │
 ├── codigo_cliente_correo.py   # Clases principales: Usuario, Carpeta, Servidor, Mensaje...
 ├── main.py                    # Interfaz CLI
-└── README.md                  # Este archivo
+└── README.md                 
 
 
 ##  Tecnologías y Librerías Usadas
@@ -100,12 +97,9 @@ Python 3.12
    https://github.com/SofiaGomez1996/cliente_correo.git
 3. Seguir las opciones del menú.
 
-
-
-##  Notas
+##  Nota
 
 Este proyecto cumple con todos los puntos requeridos:
-
 * Modelado OOP completo.
 * Encapsulamiento y uso de interfaces.
 * Árbol recursivo para carpetas.
