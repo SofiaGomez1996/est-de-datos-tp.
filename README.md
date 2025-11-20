@@ -115,7 +115,7 @@ Y a su vez, implementamos una interfaz de usuario
 Esto a su vez, nos lleva a pertmitir verificar que todas las partes del sistema funcionen de manera correcta al unirlas.
 🔹Luego, en la domuntación de código, agregamos comentarios, métodos y atributos.
 🔹Creamos un achivo README.md donde explicamos el paso a paso del proyecto, como se instala, como se ejecuta, expliamos como creamos cada entrega, la resolución que utilizamos y el mantenimiento del código que llevamos a cabo.
-🔹Organizamos el proyecto y lo fuimos subiendo subiendo al repositorio GitHub.
+🔹Organizamos el proyecto y lo fuimos subiendo al repositorio GitHub.
 -En está misma lo que hicimos fue crear diferentes archivos/carpetas de manera ordenadas.
 -Incuimos los diferentes códigos, con y sin funcionamiento, y a su vez los diferentes documentos requeridos.
 -Trabajamos en conjunto, siendo tres integrantes, dividiendonos diferentes etapas del dicho proyecto.
