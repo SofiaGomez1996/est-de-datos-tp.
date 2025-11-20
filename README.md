@@ -7,8 +7,8 @@
 Implementación completa de un **cliente de correo electrónico** en Python: requisitos del Trabajo Práctico: orientación a objetos, recursividad, estructuras de datos avanzadas, filtros, cola de prioridades y simulación de red mediante grafos.
 
 ## Integrantes del grupo
-**Soto,Lucia**_
-**Lepin,Ian**_
+**Soto,Lucia**_email: 1127427629lu@gmail.com
+**Lepin,Ian**_email: ian.lepin@gmail.com
 **Gomez,Sofia**_email: marianosofia54@gmail.com
 
 ##  Objetivo del Proyecto
