@@ -93,7 +93,7 @@ Python 3.12
 ## Cómo Ejecutar el Proyecto
 
 1. Clonar o descargar el repositorio.
-2. Ejecutar en consola:
+2. Ejecutar en consola:C:\Users\Sofii\OneDrive\Escritorio\repositorio-git
    https://github.com/SofiaGomez1996/cliente_correo.git
 3. Seguir las opciones del menú.
 
