@@ -1,35 +1,89 @@
-from usuario import Usuario
-from servidor import ServidorCorreo
-from filtros import aplicar_filtros
-from cola_prioridades import ColaPrioridades
+# main.py
+# Cliente de correo - 
 
-# Crear servidor y usuarios
-servidor = ServidorCorreo()
-sofi = Usuario("Sofi@correo.com")
-luci = Usuario("Luci@correo.com")
-bianco = Usuario("Profe_Bianco@profe.com")
+from codigo_cliente_correo import Usuario, ServidorCorreo, Carpeta
 
-# Registrar usuarios
-servidor.registrar_usuario(sofi)
-servidor.registrar_usuario(luci)
-servidor.registrar_usuario(bianco)
+def mostrar_menu():
+    print("\n----- CLIENTE DE CORREO -----")
+    print("1 - Ver bandeja de entrada")
+    print("2 - Ver carpeta Trabajo")
+    print("3 - Enviar mensaje")
+    print("4 - Ver todos los mensajes")
+    print("5 - Salir")
+    return input("Elegí una opción: ")
 
-# Sofi envía mensajes
-sofi.enviar_mensaje(luci, "Entrega urgente del TP", "No te olvides de subir el trabajo", servidor)
-sofi.enviar_mensaje(bianco, "Consulta sobre nota", "Hola profe, quería preguntar por la nota del tp", servidor)
 
-# Mostrar bandeja de entrada de Luci
-print("\nMensajes de Luci:")
-luci.inbox.listar_mensajes()
+def mostrar_carpeta(usuario, nombre_carpeta):
+    carpeta = usuario.obtener_carpeta(nombre_carpeta)
+    if carpeta:
+        mensajes = carpeta.listar_mensajes()
+        print("\n--- " + nombre_carpeta + " ---")
+        if not mensajes:
+            print("(vacío)")
+        else:
+            for m in mensajes:
+                print(str(m))
+    else:
+        print("La carpeta no existe.")
 
-# Aplicar filtros automáticos
-mensajes = luci.inbox.mensajes
-filtros = {"urgente": "Prioritarios"}
-clasificados = aplicar_filtros(mensajes, filtros)
-print("\nMensajes clasificados por filtros:", clasificados)
 
-# Usar cola de prioridades
-cola = ColaPrioridades()
-cola.agregar_mensaje(1, {"asunto": "Entrega urgente del TP"})
-cola.agregar_mensaje(3, {"asunto": "Otros"})
-print("\nMensaje más urgente:", cola.obtener_siguiente())
+def enviar_mensaje_desde_cli(remitente, servidor):
+    print("\n--- Enviar mensaje ---")
+    destinatario = input("Destinatario: ")
+    asunto = input("Asunto: ")
+    cuerpo = input("Cuerpo: ")
+    remitente.enviar_mensaje(destinatario, asunto, cuerpo, servidor)
+    print("Mensaje enviado correctamente.")
+
+
+def main():
+    # Crear servidor
+    servidor = ServidorCorreo("ServidorCentral")
+
+    # Crear usuarios
+    sofia = Usuario("Lucia")
+    profe = Usuario("Profe")
+
+    # Registrar usuarios
+    servidor.registrar_usuario(Lucia)
+    servidor.registrar_usuario(profe)
+
+    # Crear subcarpeta de trabajo
+    trabajo = Carpeta("Trabajo")
+    Lucia.obtener_carpeta("Bandeja de entrada").agregar_subcarpeta(trabajo)
+
+    # Filtro: mensaje con “tp” -> carpeta Trabajo
+    servidor.agregar_filtro("tp", "Trabajo")
+
+    # CLI
+    while True:
+        opcion = mostrar_menu()
+
+        if opcion == "1":
+            mostrar_carpeta(Lucia, "Bandeja de entrada")
+
+        elif opcion == "2":
+            mostrar_carpeta(Lucia, "Trabajo")
+
+        elif opcion == "3":
+            enviar_mensaje_desde_cli(profe, servidor)
+
+        elif opcion == "4":
+            print("\n--- TODOS LOS MENSAJES ---")
+            todos = Lucia.listar_mensajes()
+            if not todos:
+                print("(vacío)")
+            else:
+                for m in todos:
+                    print(str(m))
+
+        elif opcion == "5":
+            print("Saliendo...")
+            break
+
+        else:
+            print("Opción inválida.")
+
+
+if __name__ == "__main__":
+    main()
