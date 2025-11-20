@@ -79,5 +79,3 @@ Carpeta "1" --> "*" Carpeta : subcarpetas >
 
 ServidorCorreo "1" --> "*" Usuario : gestiona >
 ServidorCorreo "1" --> "*" ServidorCorreo : conecta >
-
-@enduml
