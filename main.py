@@ -1,89 +1,131 @@
-# main.py
-# Cliente de correo - 
+from usuario import Usuario
+from servidor import ServidorCorreo
+from filtros import aplicar_filtros
 
-from codigo_cliente_correo import Usuario, ServidorCorreo, Carpeta
+def menu():
+    print("\n--- MENU CORREO ---")
+    print("1 - Cambiar usuario")
+    print("2 - Ver bandeja de entrada")
+    print("3 - Ver enviados")
+    print("4 - Ver Trabajo")
+    print("5 - Ver Personal")
+    print("6 - Enviar mensaje")
+    print("7 - Marcar urgente")
+    print("8 - Ver urgentes")
+    print("9 - Aplicar filtros")
+    print("10 - Salir")
+    return input("Opción: ")
 
-def mostrar_menu():
-    print("\n----- CLIENTE DE CORREO -----")
-    print("1 - Ver bandeja de entrada")
-    print("2 - Ver carpeta Trabajo")
-    print("3 - Enviar mensaje")
-    print("4 - Ver todos los mensajes")
-    print("5 - Salir")
-    return input("Elegí una opción: ")
+def elegir_usuario(usuarios):
+    print("\nUsuarios:")
+    for i, u in enumerate(usuarios):
+        print(f"{i+1} - {u.nombre}")
 
+    op = input("Elegí usuario: ")
+    try:
+        indice = int(op) - 1
+        return usuarios[indice]
+    except:
+        print("Inválido.")
+        return None
 
-def mostrar_carpeta(usuario, nombre_carpeta):
-    carpeta = usuario.obtener_carpeta(nombre_carpeta)
-    if carpeta:
-        mensajes = carpeta.listar_mensajes()
-        print("\n--- " + nombre_carpeta + " ---")
-        if not mensajes:
-            print("(vacío)")
-        else:
-            for m in mensajes:
-                print(str(m))
-    else:
-        print("La carpeta no existe.")
+def elegir_mensaje(carpeta):
+    if not carpeta.mensajes:
+        print("No hay mensajes.")
+        return None
 
+    print("\nMensajes:")
+    for i, m in enumerate(carpeta.mensajes):
+        print(f"{i+1} - {m.asunto} (De {m.remitente})")
 
-def enviar_mensaje_desde_cli(remitente, servidor):
-    print("\n--- Enviar mensaje ---")
-    destinatario = input("Destinatario: ")
-    asunto = input("Asunto: ")
-    cuerpo = input("Cuerpo: ")
-    remitente.enviar_mensaje(destinatario, asunto, cuerpo, servidor)
-    print("Mensaje enviado correctamente.")
-
+    op = input("Elegí: ")
+    try:
+        indice = int(op) - 1
+        return carpeta.mensajes[indice]
+    except:
+        print("Inválido.")
+        return None
 
 def main():
-    # Crear servidor
-    servidor = ServidorCorreo("ServidorCentral")
+    servidor = ServidorCorreo("S1")
 
-    # Crear usuarios
-    sofia = Usuario("Lucia")
-    profe = Usuario("Profe")
+    sofi = Usuario("Sofi")
+    luci = Usuario("Luci")
+    profe = Usuario("Bianco")
 
-    # Registrar usuarios
-    servidor.registrar_usuario(Lucia)
-    servidor.registrar_usuario(profe)
+    usuarios = [sofi, luci, profe]
+    for u in usuarios:
+        servidor.registrar_usuario(u)
 
-    # Crear subcarpeta de trabajo
-    trabajo = Carpeta("Trabajo")
-    Lucia.obtener_carpeta("Bandeja de entrada").agregar_subcarpeta(trabajo)
+    actual = sofi
 
-    # Filtro: mensaje con “tp” -> carpeta Trabajo
-    servidor.agregar_filtro("tp", "Trabajo")
-
-    # CLI
     while True:
-        opcion = mostrar_menu()
+        print(f"\nUsuario actual: {actual.nombre}")
+        op = menu()
 
-        if opcion == "1":
-            mostrar_carpeta(Lucia, "Bandeja de entrada")
+        if op == "1":
+            nuevo = elegir_usuario(usuarios)
+            if nuevo:
+                actual = nuevo
 
-        elif opcion == "2":
-            mostrar_carpeta(Lucia, "Trabajo")
+        elif op == "2":
+            for m in actual.bandeja.listar_mensajes():
+                print(m)
 
-        elif opcion == "3":
-            enviar_mensaje_desde_cli(profe, servidor)
+        elif op == "3":
+            for m in actual.enviados.listar_mensajes():
+                print(m)
 
-        elif opcion == "4":
-            print("\n--- TODOS LOS MENSAJES ---")
-            todos = Lucia.listar_mensajes()
-            if not todos:
-                print("(vacío)")
+        elif op == "4":
+            for m in actual.carpetas["Trabajo"].listar_mensajes():
+                print(m)
+
+        elif op == "5":
+            for m in actual.carpetas["Personal"].listar_mensajes():
+                print(m)
+
+        elif op == "6":
+            dest = input("A quién (Sofi/Luci/Bianco): ")
+
+            if dest == "Sofi":
+                d = sofi
+            elif dest == "Luci":
+                d = luci
+            elif dest == "Bianco":
+                d = profe
             else:
-                for m in todos:
-                    print(str(m))
+                print("Inválido.")
+                continue
 
-        elif opcion == "5":
-            print("Saliendo...")
+            asunto = input("Asunto: ")
+            cuerpo = input("Mensaje: ")
+            actual.enviar_mensaje(d, asunto, cuerpo, servidor)
+            print("Enviado.")
+
+        elif op == "7":
+            msg = elegir_mensaje(actual.bandeja)
+            if msg:
+                actual.marcar_como_urgente(msg)
+                print("Marcado.")
+
+        elif op == "8":
+            for m in actual.urgentes.obtener_todos():
+                print(m)
+
+        elif op == "9":
+            reglas = {
+                "Trabajo": ["TP", "informe"],
+                "Personal": ["cumple", "hola"]
+            }
+            aplicar_filtros(actual, reglas)
+            print("Filtros aplicados.")
+
+        elif op == "10":
+            print("Adios")
             break
 
         else:
             print("Opción inválida.")
-
 
 if __name__ == "__main__":
     main()

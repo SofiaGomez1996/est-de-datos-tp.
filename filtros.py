@@ -1,12 +1,16 @@
-def aplicar_filtros(mensajes, filtros):
-    # filtros es un diccionario con palabras clave: nombre_carpeta
-    # ejemplo: {"urgente": "Prioritarios", "trabajo": "Laboral"}
-    resultado = {}
+def aplicar_filtros(usuario, reglas):
+    #reglas, es un diccionario: {"Trabajo": ["asunto1", "asunto2"]}
 
-    for palabra, carpeta in filtros.items():
-        resultado[carpeta] = []
-        for m in mensajes:
-            if palabra in m["asunto"].lower():
-                resultado[carpeta].append(m)
+    for nombre_carpeta, palabras in reglas.items():
+        carpeta_destino = usuario.carpetas.get(nombre_carpeta)
 
-    return resultado
+        if carpeta_destino:
+            #recorre bandeja de entrada
+            nuevos = []
+            for msg in usuario.bandeja.mensajes:
+                if any(p in msg.asunto for p in palabras):
+                    carpeta_destino.agregar_mensaje(msg)
+                else:
+                    nuevos.append(msg)
+
+            usuario.bandeja.mensajes = nuevos

@@ -1,10 +1,9 @@
 class Mensaje:
-    def __init__(self, remitente, destinatario, asunto, cuerpo):
-        self.remitente = remitente
-        self.destinatario = destinatario
+    def __init__(self, remitente, destinatario, asunto, contenido):
+        self.remitente = remitente #nombre del que envía
+        self.destinatario = destinatario #nombre del que recibe
         self.asunto = asunto
-        self.cuerpo = cuerpo
+        self.contenido = contenido
 
     def mostrar(self):
-        # Devuelve el mensaje en forma de texto
-        return f"De: {self.remitente} - Para: {self.destinatario}\nAsunto: {self.asunto}\n{self.cuerpo}\n"
+        return f"De: {self.remitente}\nPara: {self.destinatario}\nAsunto: {self.asunto}\n{self.contenido}"
